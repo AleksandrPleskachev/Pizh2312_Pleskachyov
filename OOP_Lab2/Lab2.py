@@ -4,6 +4,10 @@ from typing import List, Tuple
 
 # Абстрактный базовый класс для робота (абстракция)
 class AbstractRobot(ABC):
+    """
+    Абстрактный класс для робота
+    """
+
     @abstractmethod
     def move(self, direction: str) -> None:
         """Перемещает робота в указанном направлении."""
@@ -41,6 +45,9 @@ class Position:
 
 # Основной класс Robot (наследование от AbstractRobot)
 class Robot(AbstractRobot):
+    """
+    Класс робот (базовые шаги)
+    """
     def __init__(self, x: int = 0, y: int = 0) -> None:
         """
         Инициализирует робота с начальными координатами.
@@ -58,12 +65,12 @@ class Robot(AbstractRobot):
 
             direction (str): Направление движения (N, S, E, W).
 
-            ValueError: Если направление не является одним из допустимых (N, S, E, W).
+            ValueError: Если направление не является допустимым (N, S, E, W).
         """
         # Проверка направления в рантайме
         valid_directions = {"N", "S", "E", "W"}
         if direction not in valid_directions:
-            raise ValueError(f"Недопустимое направление: {direction}. Допустимые направления: {valid_directions}")
+            raise ValueError(f"Недопустимое направление: {direction}.")
 
         dx, dy = 0, 0
         if direction == "N":
@@ -93,25 +100,28 @@ class Robot(AbstractRobot):
 
             direction (str): Направление движения (N, S, E, W).
 
-            ValueError: Если направление не является одним из допустимых (N, S, E, W).
+            ValueError: Если направление не является допустимым (N, S, E, W).
         """
         self.move(direction)
 
 
 # Класс-наследник с изменённым поведением (полиморфизм)
 class FastRobot(Robot):
+    """
+    Класс быстрый робот (больше шаги)
+    """
     def move(self, direction: str) -> None:
         """
         Перемещает робота на две клетки вместо одной (полиморфизм).
 
             direction (str): Направление движения (N, S, E, W).
 
-            ValueError: направление не является одним из допустимых (N, S, E, W).
+            ValueError: направление не является допустимым (N, S, E, W).
         """
         # Проверка направления в рантайме
         valid_directions = {"N", "S", "E", "W"}
         if direction not in valid_directions:
-            raise ValueError(f"Недопустимое направление: {direction}. Допустимые направления: {valid_directions}")
+            raise ValueError(f"Недопустимое направление: {direction}.")
 
         dx, dy = 0, 0
         if direction == "N":
